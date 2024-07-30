@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                // Output JavaScript version
+    "module": "ES2020",                // Module system
+    "moduleResolution": "Node",       // How modules get resolved
+    "esModuleInterop": true,          // Enables compatibility with CommonJS
+    "rootDir": "src",                 // Root directory of source files
+    "outDir": "dist",                 // Output directory for compiled files
+    // "allowImportingTsExtensions": true,
+    "strict": true,                   // Enables all strict type-checking options
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts"],          // Include all TypeScript files in src
+  "exclude": ["node_modules"]          // Exclude node_modules
+}
