@@ -8,3 +8,10 @@ export const getCourseById = async (parent, arg) => {
     const id = arg.id;
     return id;
 };
+export const addCourses = async (parent, args, context, info) => {
+    //printing the value in console
+    //   console.log("Args => ", args.input)
+    Course.create(args.input);
+    // DB Logic
+    return { statusCode: 200, message: "Data save successfully", success: true };
+};

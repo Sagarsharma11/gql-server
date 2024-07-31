@@ -3,9 +3,8 @@ import { ApolloServer } from "@apollo/server";
 import {startStandaloneServer} from "@apollo/server/standalone"
 import { schema } from "./graphQl/schema/schema.js";
 import { connectDB } from "./database/database.js";
-import { User } from "./models/User.model.js";
 import { getAllUsers } from "./controllers/user.controller.js";
-import { getAllCourses } from "./controllers/course.controller.js";
+import { addCourses, getAllCourses } from "./controllers/course.controller.js";
 
 
 dotenv.config({path:"./.env"});
@@ -23,6 +22,9 @@ const server = new ApolloServer({
       users: getAllUsers,
       courses: getAllCourses,
       
+    },
+    Mutation:{
+      course:addCourses
     }
   }
 })

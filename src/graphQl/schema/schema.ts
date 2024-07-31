@@ -42,6 +42,12 @@ export const schema = `#graphql
         updatedAt:String!
     }
 
+    type response{
+        statusCode:Int!
+        message:String!
+        success:Boolean!
+    }
+
     type Query{
         hello:String
         wow: String
@@ -50,5 +56,35 @@ export const schema = `#graphql
         course(id:ID!): Course
         # section:[Section]
         # lecture:[lecture]
+    }
+
+    input AddCourseInput {
+        title: String!
+        description: String!
+        instructor: ID! # Instructor should be an ID as it's a reference
+        ratingsAverage: Int
+        ratingsQuantity: Int
+        price: Int!
+        category: String!
+        subCategory: String!
+        level: String!
+        language: String!
+        whatYouWillLearn: [String!]!
+        requirements: [String!]!
+        targetAudience: [String!]!
+        isPublished: Boolean
+        isFree: Boolean
+        isApproved: Boolean
+        isRejected: Boolean
+        isFeatured: Boolean
+        isTrending: Boolean
+        isBestseller: Boolean
+        coverImage: String!
+        previewVideo: String!
+        students: [ID!]
+    }
+
+    type Mutation{
+        course(input: AddCourseInput ):response
     }
 `;
