@@ -49,8 +49,8 @@ export const schema = `#graphql
     }
 
     type Query{
-        hello:String
-        wow: String
+        # hello:String
+        # wow: String
         users:[User]
         courses:[Course]
         course(id:ID!): Course

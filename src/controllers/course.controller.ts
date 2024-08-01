@@ -8,7 +8,8 @@ export const getAllCourses = async () => {
 
 export const getCourseById = async (parent: any, arg: any) => {
   const id = arg.id;
-  return id;
+  const course = await Course.findById({_id:id})
+  return course;
 };
 
 export const addCourses = async (
