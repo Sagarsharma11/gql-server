@@ -3,8 +3,10 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { schema } from "./graphQl/schema/schema.js";
 import { connectDB } from "./database/database.js";
-import { getAllUsers } from "./controllers/user.controller.js";
+import { getAllUsers, getUserById } from "./controllers/user.controller.js";
 import { addCourses, getAllCourses, getCourseById } from "./controllers/course.controller.js";
+import { addLecture } from "./controllers/lecture.controller.js";
+// import { addLectureById } from "./controllers/lecture.controller.js";
 dotenv.config({ path: "./.env" });
 export const envMode = process.env.NODE_ENV?.trim() || "DEVELOPMENT";
 const port = Number(process.env.port) || 3000;
@@ -14,14 +16,19 @@ const server = new ApolloServer({
     typeDefs: schema,
     resolvers: {
         Query: {
-            // hello:()=>"Hello World",
-            // wow:()=>"Wow",
             users: getAllUsers,
             courses: getAllCourses,
-            course: getCourseById
+            course: getCourseById,
+            // lectures:getAllLectures
         },
         Mutation: {
-            course: addCourses
+            course: addCourses,
+            addLecture: addLecture
+        },
+        Course: {
+            instructor: async (parent) => {
+                return await getUserById(parent.instructor);
+            }
         }
     }
 });

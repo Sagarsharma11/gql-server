@@ -13,6 +13,17 @@ export const schema = `#graphql
         updatedAt: String!
     }
 
+    
+    type UserInput{
+        name: String!
+        email: String!
+        password: String
+        googleID: String
+        role: String!
+        avatar: String!
+        verified: String!
+    }
+
     type Course{
         _id: ID!
         title: String!
@@ -48,15 +59,7 @@ export const schema = `#graphql
         success:Boolean!
     }
 
-    type Query{
-        hello:String
-        wow: String
-        users:[User]
-        courses:[Course]
-        course(id:ID!): Course
-        # section:[Section]
-        # lecture:[lecture]
-    }
+
 
     input AddCourseInput {
         title: String!
@@ -84,7 +87,77 @@ export const schema = `#graphql
         students: [ID!]
     }
 
+    input AddLectureInput {
+        title:String!
+        description:String!
+        position:Int!
+        # resources:[Resources]
+        videoURL: videoURLInput
+        duration: Int!
+        # section:Section!
+        courseId:ID!
+        instructor:[ID!]
+        isPublished:Boolean!
+        isPreview:Boolean!
+    }
+
+    type Resources{
+        _id:ID
+        title:String
+        url: String
+    }
+
+    # input addResourcesInput {
+    #     title:String
+    #     url: String
+    # }
+
+    type videoURL{
+        _480p:String
+        _720p:String
+        _1080:String
+    }
+
+    input videoURLInput{
+        _480p:String
+        _720p:String
+        _1080:String
+    }
+
+    
+    # input addVideoURLInput {
+    #     title:String
+    #     url: String
+    # }
+
+    type lecture {
+        _id:ID!
+        title:String!
+        description:String!
+        position:Int!
+        # resources:[Resources]
+        videoURL: videoURL
+        duration: Int!
+        # section:Section!
+        course:Course!
+        instructor:User!
+        isPublished:Boolean!
+        isPreview:Boolean!
+        createdAt:String!
+        updatedAt:String!
+
+    }
+
+    type Query{
+        users:[User]
+        courses:[Course]
+        course(id:ID!): Course
+        # section:[Section]
+        # lectures:[lecture]
+    }
     type Mutation{
         course(input: AddCourseInput ):response
+        addLecture(input: AddLectureInput):response
+        # addVideoUrl(input:addVideoURLInput):response 
     }
 `;

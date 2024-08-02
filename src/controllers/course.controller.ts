@@ -6,6 +6,12 @@ export const getAllCourses = async () => {
   return courseData;
 };
 
+export const getAllLectures = async () => {
+  const courseData = await Course.find({});
+  console.log(courseData);
+  return courseData;
+};
+
 export const getCourseById = async (parent: any, arg: any) => {
   const id = arg.id;
   const course = await Course.findById({_id:id})

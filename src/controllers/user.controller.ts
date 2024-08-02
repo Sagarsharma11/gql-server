@@ -5,3 +5,8 @@ export const getAllUsers = async () => {
   console.log(userData);
   return userData;
 };
+
+
+export const getUserById = async (id: string) =>{
+  return await User.findById({_id:id})
+}
