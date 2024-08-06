@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2020",                // Output JavaScript version
-    "module": "ES2020",                // Module system
+    "target": "ES2022",                // Output JavaScript version
+    "module": "ES2022",                // Module system
     "moduleResolution": "Node",       // How modules get resolved
     "esModuleInterop": true,          // Enables compatibility with CommonJS
     "rootDir": "src",                 // Root directory of source files
