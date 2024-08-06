@@ -1,6 +1,6 @@
-import { Lecture } from "../models/lecture.model";
+import { Lecture } from "../models/lecture.model.js";
 
-export const getAllLecture = async () => {};
+// export const getAllLecture = async () => {};
 export const getLectureById = async () => {};
 export const addLecture = async (_:any, args:any) => {
     console.log("hello world");

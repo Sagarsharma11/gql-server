@@ -5,7 +5,8 @@ import { schema } from "./graphQl/schema/schema.js";
 import { connectDB } from "./database/database.js";
 import { getAllUsers, getUserById } from "./controllers/user.controller.js";
 import { addCourses, getAllCourses, getAllLectures, getCourseById} from "./controllers/course.controller.js";
-import { addLecture } from "./controllers/lecture.controller.js";
+import { addLecture, getLectureById } from "./controllers/lecture.controller.js";
+import { Lecture } from "./models/lecture.model.js";
 // import { addLectureById } from "./controllers/lecture.controller.js";
 
 
@@ -22,7 +23,8 @@ const server = new ApolloServer({
       users: getAllUsers,
       courses: getAllCourses,
       course: getCourseById,
-      // lectures:getAllLectures
+      lectures:getAllLectures,
+      // lecture:getLectureById
     },
     Mutation:{
       course:addCourses,
@@ -31,6 +33,17 @@ const server = new ApolloServer({
     Course:{
       instructor:async (parent)=>{
         return await getUserById(parent.instructor)
+      }
+    },
+    Lecture:{
+      videoURL: (parent) => {
+        // console.log("hey", parent["videoURL"]["_id"]);
+        const obj = JSON.parse(JSON.stringify(parent["videoURL"]))
+        return {
+          _480px: obj["480px"],
+          _720px: obj["720px"],
+          _1080px:obj["1080px"]
+        };
       }
     }
   }

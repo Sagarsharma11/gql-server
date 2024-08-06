@@ -113,30 +113,24 @@ export const schema = `#graphql
     # }
 
     type videoURL{
-        _480p:String
-        _720p:String
-        _1080:String
+        _480px:String
+        _720px:String
+        _1080px:String
     }
 
     input videoURLInput{
-        _480p:String
-        _720p:String
-        _1080:String
+        _480px:String
+        _720px:String
+        _1080px:String
     }
 
-    
-    # input addVideoURLInput {
-    #     title:String
-    #     url: String
-    # }
-
-    type lecture {
+    type Lecture {
         _id:ID!
         title:String!
         description:String!
         position:Int!
         # resources:[Resources]
-        videoURL: videoURL
+        videoURL: videoURL!
         duration: Int!
         # section:Section!
         course:Course!
@@ -153,7 +147,8 @@ export const schema = `#graphql
         courses:[Course]
         course(id:ID!): Course
         # section:[Section]
-        # lectures:[lecture]
+        lectures:[Lecture]
+        lecture(id:ID!):Lecture
     }
     type Mutation{
         course(input: AddCourseInput ):response

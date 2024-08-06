@@ -1,4 +1,5 @@
 import { Course } from "../models/Course.model.js";
+import { Lecture } from "../models/lecture.model.js";
 
 export const getAllCourses = async () => {
   const courseData = await Course.find({});
@@ -7,7 +8,7 @@ export const getAllCourses = async () => {
 };
 
 export const getAllLectures = async () => {
-  const courseData = await Course.find({});
+  const courseData = await Lecture.find({});
   console.log(courseData);
   return courseData;
 };
@@ -17,6 +18,13 @@ export const getCourseById = async (parent: any, arg: any) => {
   const course = await Course.findById({_id:id})
   return course;
 };
+
+export const getLectureById = async (parent: any, arg: any) => {
+  const id = arg.id;
+  const course = await Lecture.findById({_id:id})
+  return course;
+};
+
 
 export const addCourses = async (
   parent: any,
